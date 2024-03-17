@@ -88,7 +88,7 @@ const MangaList = ({ url, mangaByType, popular, latest }: MangaListProps) => {
                         <div key={manga.slug} className="bg-transparent w-[180px] shadow-md rounded-md py-4 mx-2 my-2">
                             <Link href={`/komik/${manga.slug}`}>
                                 <div className="relative mx-auto" style={{ width: '140px', height: '200px' }}>
-                                    <Image width={'200'} height={200} src={manga.coverImg} alt={manga.title} className=" rounded-md object-cover hover:scale-105 transition-all ease-in-out duration-300" />
+                                    <Image width={'200'} height={200} src={manga.coverImg} alt={manga.title} className=" rounded-md object-cover hover:scale-105 transform transition-all ease-in-out duration-300" />
                                 </div>
                                 <div className="p-4">
                                     <h1 className="text-sm font-semibold mb-2 truncate">{manga.title}</h1>
