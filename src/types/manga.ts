@@ -26,6 +26,8 @@ export interface Chapter {
   seriesSlug: string;
   seriesTitle: string;
 }
+
+
 export interface Manga {
   slug: string;
   title: string;
@@ -33,4 +35,29 @@ export interface Manga {
   latestChapter: string;
   rating: string;
   type: string;
+  popular?: Popular[];
+  latest?: Latest[];
+}
+
+export interface Popular {
+  slug: string;
+  title: string;
+  coverImg: string;
+  latestChapter: string;
+  rating: string;
+  type: string;
+}
+export interface Latest {
+  slug: string;
+  title: string;
+  coverImg: string;
+  latestChapter: string;
+  rating: string;
+  type: string;
+}
+export interface MangaListProps {
+  url: string;
+  mangaByType: string;
+  popular?: boolean;
+  latest?: boolean;
 }

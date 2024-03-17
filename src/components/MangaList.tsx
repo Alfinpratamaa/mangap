@@ -5,45 +5,10 @@ import axios from 'axios';
 import ReactStar from 'react-stars';
 import Image from 'next/image';
 import { Button } from './ui/button';
+import { MangaListProps, Manga } from '@/types/manga';
 
-interface Manga {
-    slug: string;
-    title: string;
-    coverImg: string;
-    latestChapter: string;
-    rating: string;
-    type: string;
-    popular?: Popular[];
-    latest?: Latest[];
-}
 
-interface Popular {
-    slug: string;
-    title: string;
-    coverImg: string;
-    latestChapter: string;
-    rating: string;
-    type: string;
-}
-interface Latest {
-    slug: string;
-    title: string;
-    coverImg: string;
-    latestChapter: string;
-    rating: string;
-    type: string;
-}
-interface MangaListProps {
-    url: string;
-    mangaByType: string;
-    popular?: boolean;
-    latest?: boolean;
 
-}
-interface MangaListState {
-    mangaList: Manga[];
-
-}
 
 const MangaList = ({ url, mangaByType, popular, latest }: MangaListProps) => {
     const [mangaList, setMangaList] = useState([]);
