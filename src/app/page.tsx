@@ -1,11 +1,16 @@
 import MangaList from "@/components/MangaList";
-import Image from "next/image";
 
 export default function Home() {
-  const url = 'https://api-manga.koidevz.net'
+  const hotKomik = 'https://api-manga.koidevz.net/hot-komik'
+  const home = 'https://api-manga.koidevz.net/komik-home'
   return (
-    <div>
-      <MangaList url={url} />
-    </div>
+    <>
+      <section className="">
+        <MangaList url={home} mangaByType={'Hot Komik'} popular />
+      </section>
+      <section className="-mt-[160px]">
+        <MangaList url={home} mangaByType={'Latest '} latest={true} />
+      </section>
+    </>
   );
 }

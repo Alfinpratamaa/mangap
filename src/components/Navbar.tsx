@@ -34,10 +34,10 @@ const Navbar = () => {
     ];
 
     return (
-        <div className="flex flex-col items-center w-full px-4 dark:bg-primary-foreground bg:text-secondary bg-white text-primary">
-            <div className="flex justify-between items-center w-full h-20 md:space-x-0 space-x-3 ">
+        <nav className="flex rounded-md flex-col items-center w-full px-4 dark:bg-primary-foreground md:space-x-0 space-x-3 bg:text-secondary bg-white text-primary">
+            <div className="flex justify-between items-center w-full h-20">
                 <div>
-                    <div className="flex  space-x-3 items-center">
+                    <div className="flex flex-grow space-x-3 items-center">
                         <h1 className="md:text-4xl text-xl font-extrabold ml-2">
                             <Link
                                 className="link-underline link-underline-black"
@@ -54,25 +54,25 @@ const Navbar = () => {
                 </div>
 
 
-                <ul className="hidden md:hidden lg:flex xl:flex">
+                <ul className="hidden md:flex">
                     {links.map((link) => (
                         <li
                             key={link.path}
-                            className="nav-links px-4 cursor-pointer capitalize font-medium  text-gray-500 hover:scale-105 dark:hover:text-white hover:text-primary duration-200 link-underline"
+                            className="nav-links px-4 cursor-pointer capitalize font-medium text-gray-500 hover:scale-105 dark:hover:text-white hover:text-primary duration-200 link-underline"
                         >
                             <Link href={link.path}>{link.label}</Link>
 
                         </li>
                     ))}
                 </ul>
-                <div className="hidden lg:flex ">
+                <div className="hidden lg:flex md:flex">
                     <ModeToggle />
 
                 </div>
 
                 <div
                     onClick={() => setNav(!nav)}
-                    className="cursor-pointer pr-4 hidden md:flex lg:hidden xl:hidden"
+                    className="relative cursor-pointer left-5 pr-4 md:hidden"
                 >
                     {nav ? <FaTimes size={30} /> : <FaBars size={30} />}
                 </div>
@@ -96,7 +96,7 @@ const Navbar = () => {
                     ))}
                 </ul>
             )}
-        </div>
+        </nav>
     );
 };
 
