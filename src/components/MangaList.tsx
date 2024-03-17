@@ -19,11 +19,13 @@ const MangaList = ({ url, mangaByType, popular, latest }: MangaListProps) => {
             setMangaList(response.data.data);
 
             if (popular) {
-                setMangaList(response.data.data.popular.slice(0, 6));
+                const popularManga = response.data.data.popular.slice(0, 6);
+                setMangaList(popularManga);
                 console.log('popular:', response.data.data.popular.slice(0, 6));
                 return
             } else if (latest) {
-                setMangaList(response.data.data.latest.slice(0, 6));
+                const latestManga = response.data.data.latest.slice(0, 6);
+                setMangaList(latestManga);
                 console.log('latest:', response.data.data.latest.slice(0, 6));
                 return
             }
