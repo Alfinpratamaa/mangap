@@ -38,12 +38,10 @@ const Navbar = () => {
             <div className="flex justify-between items-center w-full h-20">
                 <div>
                     <div className="flex flex-grow space-x-3 items-center">
-                        <h1 className="md:text-4xl text-xl font-extrabold ml-2">
+                        <h1 className="text-lg md:text-2xl font-extrabold ml-2">
                             <Link
                                 className="link-underline link-underline-black"
                                 href="/"
-                                target="_blank"
-                                rel="noreferrer"
                             >
                                 Mangap
                             </Link>
@@ -72,7 +70,7 @@ const Navbar = () => {
 
                 <div
                     onClick={() => setNav(!nav)}
-                    className="relative cursor-pointer left-5 pr-4 md:hidden"
+                    className="relative cursor-pointer left-5 pr-8 md:hidden"
                 >
                     {nav ? <FaTimes size={30} /> : <FaBars size={30} />}
                 </div>

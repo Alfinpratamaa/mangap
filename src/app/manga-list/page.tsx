@@ -1,10 +1,18 @@
-'use client'
 
+import ClientPagination from '@/components/ClientPagination'
 import React from 'react'
 
 const page = () => {
+
+
+    const url = 'https://api-manga.koidevz.net'
+
     return (
-        <div>page</div>
+        <div>
+            <section>
+                <ClientPagination url={url} mangaByType={'All Anime'} />
+            </section>
+        </div>
     )
 }
 

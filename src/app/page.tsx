@@ -6,7 +6,7 @@ export default function Home() {
   return (
     <>
       <section className="">
-        <MangaList url={home} mangaByType={'Hot Komik'} popular />
+        <MangaList url={home} mangaByType={'Hot Komik'} popular={true} seeAll={true} />
       </section>
       <section className="-mt-[160px]">
         <MangaList url={home} mangaByType={'Latest '} latest={true} />
