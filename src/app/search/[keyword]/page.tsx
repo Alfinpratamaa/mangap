@@ -21,7 +21,7 @@ const SearchPage = () => {
         const fetchSearchResults = async () => {
             try {
 
-                const response = await axios.get(`http://localhost:8000/search?keyword=${keyword}`, {
+                const response = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/search?keyword=${keyword}`, {
                     params: {
                         search: decodedKeyword,
                     },

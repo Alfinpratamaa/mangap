@@ -11,30 +11,30 @@ import DetailMangaSkeleton from '@/components/DetailMangaSkeleton';
 
 const MangaDetailPage = () => {
     const slugParam = useParams<{ slug: string }>();
-
+    const url = `${process.env.NEXT_PUBLIC_API_URL}/detail`
     const [mangaDetail, setMangaDetail] = useState<any | null>(null);
     const [chapterList, setChapterList] = useState<Chapter[] | null>(null);
     const [loading, setLoading] = useState(true);
 
-    useEffect(() => {
-        const fetchMangaDetail = async () => {
-            try {
-                if (slugParam.slug) {
-                    const response = await axios(`http://localhost:8000/detail/${slugParam.slug}/`);
-                    const data = response.data.data; // Access the 'data' property
-                    setLoading(false);
-                    setMangaDetail(data); // Pass 'data' to setMangaDetail
-                    console.log('mangaDetail:', data);
-                    setChapterList(data.chapter);
-                    console.log('manga capter :', data.chapter)
-                }
-            } catch (error) {
-                console.error('Error fetching manga detail:', error);
+    const fetchMangaDetail = async () => {
+        try {
+            if (slugParam.slug) {
+                const response = await axios(`${url}/${slugParam.slug}/`);
+                const data = response.data.data; // Access the 'data' property
+                setLoading(false);
+                setMangaDetail(data); // Pass 'data' to setMangaDetail
+                console.log('mangaDetail:', data);
+                setChapterList(data.chapter);
+                console.log('manga capter :', data.chapter)
             }
-        };
+        } catch (error) {
+            console.error('Error fetching manga detail:', error);
+        }
+    };
+    useEffect(() => {
 
         fetchMangaDetail();
-    }, [slugParam.slug]);
+    }, [slugParam.slug, url]);
 
 
 

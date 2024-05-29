@@ -22,7 +22,7 @@ const Page = () => {
     const [totalPages, setTotalPages] = useState(0);
     console.log("genre : ", genre)
     console.log("currentPage : ", page)
-    const url = `http://localhost:8000/genres`
+    const url = `${process.env.NEXT_PUBLIC_API_URL}/genres`
 
     const getFlagComponent = (chapter: any) => {
         if (chapter.toLowerCase() === 'manga') {

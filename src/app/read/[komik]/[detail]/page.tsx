@@ -55,7 +55,7 @@ const ReadChapterPage = () => {
 
   const fetchChapterList = async () => {
     try {
-      const response = await axios.get(`http://localhost:8000/detail/${komik}`);
+      const response = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/detail/${komik}`);
       console.log('chapterList:', response.data.data);
       setLoading(false);
       setChapterList(response.data.data);
@@ -115,6 +115,7 @@ const ReadChapterPage = () => {
                   width={700}
                   height={1000}
                   objectFit="contain"
+                  className='w-full'
                 />
               </div>
             ))}

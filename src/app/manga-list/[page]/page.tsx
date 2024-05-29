@@ -27,7 +27,7 @@ export default function AllListPage() {
     const [totalPages, setTotalPages] = useState(1);
 
     const router = useRouter();
-    const url = "http://localhost:8000";
+    const url = process.env.NEXT_PUBLIC_API_URL;
 
 
 
