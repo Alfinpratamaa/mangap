@@ -18,7 +18,7 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const url = `${process.env.API}/popular`;
+  const url = `${process.env.API_URL}/popular`;
   return (
     <html lang="en">
       <body className={inter.className}>
