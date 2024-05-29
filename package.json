@@ -27,7 +27,8 @@
     "sharp": "^0.33.2",
     "tailwind-merge": "^2.2.1",
     "tailwindcss-animate": "^1.0.7",
-    "use-debounce": "^10.0.0"
+    "use-debounce": "^10.0.0",
+    "prop-types": "^15.8.1"
   },
   "devDependencies": {
     "@types/node": "^20",
