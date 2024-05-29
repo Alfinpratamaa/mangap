@@ -19,7 +19,7 @@ const GenreList = () => {
     useEffect(() => {
         const fetchGenres = async () => {
             try {
-                const response = await axios.get(`http://localhost:8000/genre`);
+                const response = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/genre`);
                 setGenres(response.data.data);
                 console.log('genres:', response.data.data);
                 setLoading(false);
