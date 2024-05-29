@@ -39,7 +39,7 @@ const ReadChapterPage = () => {
   const fetchChapterData = async () => {
     try {
       if (detail) {
-        const response = await axios.get(`http://localhost:8000/read/${detail}`);
+        const response = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/read/${detail}`);
         setLoading(false);
         setChapterData(response.data.data[0]);
         console.log('chapterData:', response.data.data[0]);
