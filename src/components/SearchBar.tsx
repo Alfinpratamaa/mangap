@@ -10,11 +10,16 @@ const SearchBar = () => {
     const router = useRouter()
 
     const handleSearch = () => {
-
         if (searchKeyword.trim() !== '') {
             const decodedKeyword = decodeURI(searchKeyword);
             router.push(`/search/${decodedKeyword}/`)
             setSearchKeyword('')
+        }
+    }
+
+    const handleKeyDown = (e: any) => {
+        if (e.key === 'Enter') {
+            handleSearch();
         }
     }
 
@@ -23,7 +28,8 @@ const SearchBar = () => {
             <Input
                 value={searchKeyword}
                 onChange={(e) => setSearchKeyword(e.target.value)}
-                type="manga"
+                onKeyDown={handleKeyDown}
+                type="text"
                 placeholder="search manga"
                 className="rounded-xl h-10 md:w-[240px] w-[200px] dark:bg-primary/5 px-4 dark:text-secondary-foreground text-primary p-2"
             />
