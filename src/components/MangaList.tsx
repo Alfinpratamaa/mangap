@@ -81,7 +81,7 @@ const MangaList = ({ url, mangaByType, seeAll }: MangaListProps) => {
                                                 <div className='justify-between items-center space-x-2'>
                                                     <ReactStar
                                                         count={5}
-                                                        size={23}
+                                                        size={20}
                                                         value={parseFloat(manga.rating) / 2}
                                                         color1='#555'
                                                         color2='#f2c10f'

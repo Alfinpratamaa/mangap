@@ -16,7 +16,7 @@ const MangaDetails = ({ mangaDetail }: { mangaDetail: any }) => {
                 ))}
             </div>
             <h3 className="text-md mb-2 font-semibold text-secondary-foreground">Deskripsi :</h3>
-            <p className="mb-5 text-sm font-sans text-secondary-foreground">{mangaDetail.description}</p>
+            <p className="mb-5 text-sm font-sans text-secondary-foreground">{mangaDetail.description === "" ? mangaDetail.description : "tidak ada deskripsi"}</p>
             <div className="flex flex-col md:flex-row items-center mb-4">
                 <div className="flex-shrink-0 mb-4 md:mb-0 md:mr-4">
                     <Image
