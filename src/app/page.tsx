@@ -9,7 +9,7 @@ export default function Home() {
       <div className="flex flex-col gap-4">
 
         <section className="relative">
-          <MangaList url={url} mangaByType={'Recomended'} seeAll />
+          <MangaList url={url} mangaByType={'Recomended Komik'} seeAll />
         </section>
         <section>
           <GenreList />
