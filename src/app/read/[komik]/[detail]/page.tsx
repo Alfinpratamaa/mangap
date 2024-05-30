@@ -73,7 +73,7 @@ const ReadChapterPage = () => {
     <>
       {loading && <ReadPageSkeleton />}
       {!loading && <div className="flex max-w-full w-full flex-col items-center justify-center min-h-screen dark:bg-secondary">
-        <h1 className="text-3xl font-bold mt-10 mb-10 md:px-0 px-3 ">{chapterData?.title}</h1>
+        <h1 className="text-3xl font-bold mt-5 mb-5 md:px-0 px-3 ">{chapterData?.title}</h1>
         <div className="m-4 flex mx-5 justify-center space-x-4 md:px-0 ">
           {chapterData?.prev ? (
             <Link href={`/read/${komik}${chapterData?.prev}`} className="rounded-lg">
