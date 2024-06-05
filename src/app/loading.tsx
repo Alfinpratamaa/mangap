@@ -1,11 +1,11 @@
-import Skeleton from '@/components/Skeleton'
+// import Skeleton from '@/components/Skeleton'
 
-const Loading = () => {
-    return (
-        <main>
-            <Skeleton />
-        </main>
-    )
-}
+// const Loading = () => {
+//     return (
+//         <main>
+//             <Skeleton />
+//         </main>
+//     )
+// }
 
-export default Loading
+// export default Loading
