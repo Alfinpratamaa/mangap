@@ -60,10 +60,10 @@ const MangaDetailPage = () => {
                         {chapterList?.map((chapter, index) => (
                             <li key={index} className="bg-transparent text-white rounded-lg p-4 flex items-center justify-between">
                                 <Link href={`/read/${slugParam.slug}${chapter?.href}`} className='flex items-center space-x-3 cursor-pointer hover:text-blue-800'>
-                                    <p className="text-lg text-primary dark:text-primary-foreground hover:text-blue-500">{chapterList?.length - index}.</p>
-                                    <p className="text-sm text-primary dark:text-primary-foreground">{chapter.title}</p>
+                                    <p className="text-lg text-primary dark:text-secondary-foreground hover:text-blue-500">{chapterList?.length - index}.</p>
+                                    <p className="text-sm text-primary dark:text-secondary-foreground">{chapter.title}</p>
                                 </Link>
-                                <p className="text-sm">
+                                <p className="text-sm text-primary dark:text-secondary-foreground">
                                     {chapter.date}
                                 </p>
                             </li>
