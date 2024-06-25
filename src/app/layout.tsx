@@ -29,6 +29,7 @@ export default function RootLayout({
           src={`https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${process.env.NEXT_PUBLIC_GOOGLE_ADSENSE_ID}`} // Replace with your ID
           crossOrigin="anonymous"
         />
+        <meta name="google-adsense-account" content="ca-pub-8843731517333453" />
       </head>
       <body className={inter.className}>
         <ThemeProvider
