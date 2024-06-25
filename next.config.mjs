@@ -1,14 +1,6 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   images: {
-    domains: [
-      "res.cloudinary.com",
-      "komikcast.lol",
-      "kiryuu.id",
-      "svr4.imgkc1.my.id",
-      "svr5.imgkc2.my.id",
-      "svr6.imgkc3.my.id",
-    ],
     remotePatterns: [
       {
         protocol: "https",
@@ -19,23 +11,23 @@ const nextConfig = {
         hostname: "**",
       },
       {
-        protocol: "http",
+        protocol: "https",
         hostname: "komikcast.lol",
       },
       {
-        protocol: "http",
+        protocol: "https",
         hostname: "kiryuu.id",
       },
       {
-        protocol: "http",
+        protocol: "https",
         hostname: "svr4.imgkc1.my.id",
       },
       {
-        protocol: "http",
+        protocol: "https",
         hostname: "svr5.imgkc2.my.id",
       },
       {
-        protocol: "http",
+        protocol: "https",
         hostname: "svr6.imgkc3.my.id",
       },
       {
