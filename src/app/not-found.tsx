@@ -3,14 +3,15 @@
 import Link from "next/link";
 
 const Error404Page = () => {
+    setTimeout(() => {
+        window.location.href = "/"
+
+    }, 3000)
     return (
-        <div className="h-screen w-full bg-black">
+        <div className="h-screen w-full bg-secondary-foreground dark:bg-black">
             <div className="max-w-screen-lg m-auto flex flex-col p-10 lg:p-15 items-center justify-center bg-black text-white">
-                <h1 className="text-md lg:text-xl text-center">
+                <h1 className="text-md lg:text-xl text-center dark:text-white text-black">
                     Ups! Sepertinya Anda telah tersesat halaman 404 yang misterius. Jangan khawatir!
-                </h1>
-                <h1 className="py-5 text-sm lg:text-xl text-center">
-                    Biarkan Emma membawa Anda kembali ke tanah yang dikenal
                 </h1>
                 <img
                     src="/emma.jpg"
@@ -18,8 +19,8 @@ const Error404Page = () => {
                     className="object-contain h-[200px] lg:h-[300px]"
                 />
                 <Link href="/">
-                    <p className="text-sm dark:hover:text-primary lg:text-md mt-10 py-4 px-3 ring-1  rounded ring-primary-foreground  hover:scale-95 transition-all ease-in-out cursor-pointer text-center">
-                        Ikuti Emma kembali ke Tanah Kysomaio Manga
+                    <p className="text-sm dark:text-white text-black lg:text-md mt-10 py-4 px-3 ring-1  rounded ring-primary-foreground  hover:scale-95 transition-all ease-in-out cursor-pointer text-center">
+                        Kembali
                     </p>
                 </Link>
             </div>
