@@ -38,7 +38,7 @@ const Navbar = () => {
                                 className="link-underline link-underline-black"
                                 href="/"
                             >
-                                Mangap
+                                Mangapp
                             </Link>
                         </h1>
                         <SearchBar />
