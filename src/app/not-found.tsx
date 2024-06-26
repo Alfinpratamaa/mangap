@@ -3,10 +3,6 @@
 import Link from "next/link";
 
 const Error404Page = () => {
-    setTimeout(() => {
-        window.location.href = "/"
-
-    }, 3000)
     return (
         <div className="h-screen w-full bg-secondary-foreground dark:bg-black">
             <div className="max-w-screen-lg m-auto flex flex-col p-10 lg:p-15 items-center justify-center bg-black text-white">
