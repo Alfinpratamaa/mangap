@@ -12,8 +12,24 @@ const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: "Mangapp",
-  description: "Mangap adalah tempat terbaik untuk membaca komik manga, manhwa, dan manhua dalam bahasa Indonesia. Nikmati koleksi lengkap komik terbaru dan terpopuler seperti Naruto, Jujutsu Kaisen, Solo Leveling, dan banyak lagi. Baca komik online gratis dengan kualitas gambar terbaik dan update terbaru setiap hari. Temukan berbagai genre menarik dari aksi, petualangan, fantasi, hingga romantis hanya di Mangap. Dapatkan pengalaman membaca komik yang mudah dan menyenangkan hanya dengan beberapa klik. Bergabunglah dengan komunitas pembaca komik terbesar di Indonesia dan selalu update dengan komik favorit Anda.",
+  description: "Mangapp adalah tempat terbaik untuk membaca komik manga, manhwa, dan manhua dalam bahasa Indonesia. Nikmati koleksi lengkap komik terbaru dan terpopuler seperti Naruto, Jujutsu Kaisen, Solo Leveling, dan banyak lagi. Baca komik online gratis dengan kualitas gambar terbaik dan update terbaru setiap hari. Temukan berbagai genre menarik dari aksi, petualangan, fantasi, hingga romantis hanya di Mangap. Dapatkan pengalaman membaca komik yang mudah dan menyenangkan hanya dengan beberapa klik. Bergabunglah dengan komunitas pembaca komik terbesar di Indonesia dan selalu update dengan komik favorit Anda.",
   keywords: keywords,
+  openGraph: {
+    type: "website",
+    url: 'https://mangapp.me',
+    countryName: "Indonesia",
+    description: 'Mangapp adalah tempat terbaik untuk membaca komik manga, manhwa, dan manhua dalam bahasa Indonesia. Nikmati koleksi lengkap komik terbaru dan terpopuler seperti Naruto, Jujutsu Kaisen, Solo Leveling, dan banyak lagi. Baca komik online gratis dengan kualitas gambar terbaik dan update terbaru setiap hari. Temukan berbagai genre menarik dari aksi, petualangan, fantasi, hingga romantis hanya di Mangap. Dapatkan pengalaman membaca komik yang mudah dan menyenangkan hanya dengan beberapa klik. Bergabunglah dengan komunitas pembaca komik terbesar di Indonesia dan selalu update dengan komik favorit Anda.',
+    title: 'Mangapp',
+    siteName: 'Mangapp',
+    alternateLocale: 'id_ID',
+  },
+  authors: [{
+    name: "Mangapp",
+    url: 'https://mangapp.me'
+  }],
+  icons: {
+    icon: '/favicon.ico',
+  }
 };
 
 export default function RootLayout({
