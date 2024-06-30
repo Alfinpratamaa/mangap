@@ -4,8 +4,8 @@ import Link from "next/link";
 
 const Error404Page = () => {
     return (
-        <div className="h-screen w-full bg-secondary-foreground dark:bg-black">
-            <div className="max-w-screen-lg m-auto flex flex-col p-10 lg:p-15 items-center bg-secondary-foreground justify-center bg-black ">
+        <div className="h-screen w-full bg-secondary-foreground ">
+            <div className="max-w-screen-lg m-auto flex flex-col p-10 lg:p-15 items-center bg-secondary-foreground justify-center dark:border-gray-700 ">
                 <h1 className="text-md lg:text-xl text-center dark:text-white text-black">
                     Ups! Sepertinya Anda telah tersesat halaman 404 yang misterius. Jangan khawatir!
                 </h1>
