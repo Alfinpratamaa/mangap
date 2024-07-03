@@ -1,4 +1,4 @@
-'use client';;
+'use client';
 import { useEffect, useState } from 'react';
 import { useParams } from 'next/navigation';
 import axios from 'axios';
@@ -106,22 +106,24 @@ const ReadChapterPage = () => {
 
         <div className="flex justify-center">
           <div className="">
-            {chapterData?.panel?.map((imageUrl, index) => (
-              <div key={index} className="relative">
-                <Image
-                  src={imageUrl}
-                  alt={"error image"}
-                  layout="responsive"
-                  width={700}
-                  height={1000}
-                  objectFit="contain"
-                  className='w-full'
-                />
-              </div>
-            ))}
+            {chapterData?.panel?.map((imageUrl, index) => {
+              console.log('Image URL:', imageUrl); // Log image URL
+              return (
+                <div key={index} className="relative">
+                  <Image
+                    src={imageUrl}
+                    alt={"error image"}
+                    layout="responsive"
+                    width={700}
+                    height={1000}
+                    objectFit="contain"
+                    className='w-full'
+                    unoptimized
+                  />
+                </div>
+              );
+            })}
           </div>
-
-
         </div>
         <div className="m-4 flex mx-5 justify-center space-x-4 md:px-0 ">
           {chapterData?.prev ? (
@@ -152,7 +154,6 @@ const ReadChapterPage = () => {
             </span>
           )}
         </div>
-
       </div>}
     </>
   );
