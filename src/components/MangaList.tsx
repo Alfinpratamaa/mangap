@@ -28,6 +28,7 @@ const MangaList = ({ url, mangaByType, seeAll }: MangaListProps) => {
         try {
             const response = await axios.get(url);
             setMangaList(response.data.data);
+            console.log('mangaList:', response.data.data);
             setLoading(false);
         } catch (error) {
             console.error('Error fetching manga list:', error);
