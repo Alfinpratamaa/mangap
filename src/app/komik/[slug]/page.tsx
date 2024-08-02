@@ -22,6 +22,7 @@ const MangaDetailPage = () => {
                 const response = await axios(`${url}/${slugParam.slug}/`);
                 const data = response.data.data; // Access the 'data' property
                 setLoading(false);
+                data.href = `/${slugParam.slug}`;
                 setMangaDetail(data); // Pass 'data' to setMangaDetail
                 console.log('mangaDetail:', data);
                 setChapterList(data.chapter);
