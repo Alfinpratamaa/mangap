@@ -4,7 +4,6 @@ import {
     Pagination,
     PaginationContent,
     PaginationItem,
-    PaginationLink,
     PaginationNext,
     PaginationPrevious,
 } from "@/components/ui/pagination";
@@ -24,7 +23,6 @@ export default function AllListPage() {
     const currentPage = page ? parseInt(page, 10) : 1;
     const [isClient, setIsClient] = useState(false);
     const [data, setData] = useState<Manga[]>([]);
-    const [totalPages, setTotalPages] = useState(1);
 
     const router = useRouter();
     const url = process.env.NEXT_PUBLIC_API_URL;
@@ -34,15 +32,12 @@ export default function AllListPage() {
     const fetchData = useCallback(async () => {
         try {
             const response = await axios.get(`${url}/daftar-komik/${currentPage}`);
-            const responseData = response.data.data.komikList;
-            const pagination = response.data.data.pagination;
+            const responseData = response.data.data.comics;
 
 
             console.log("responseData:", responseData);
-            console.log("pagination:", pagination);
 
             setData(responseData);
-            setTotalPages(pagination.lastPage);
             setIsClient(true);
         } catch (error) {
             console.error("Error fetching data:", error);
@@ -120,8 +115,6 @@ export default function AllListPage() {
             {isClient && (
                 <PaginationSection
                     currentPage={currentPage}
-                    totalPage={totalPages}
-
                 />
             )}
         </>
@@ -130,12 +123,10 @@ export default function AllListPage() {
 
 function PaginationSection({
     currentPage,
-    totalPage,
 }: {
-    currentPage: number;
-    totalPage: number;
+        currentPage: number;
 }) {
-    const nextPage = currentPage < totalPage ? currentPage + 1 : currentPage;
+    const nextPage = currentPage + 1;
     const prevPage = currentPage > 1 ? currentPage - 1 : currentPage;
 
     return (
@@ -146,11 +137,6 @@ function PaginationSection({
                         <Link href={`/manga-list/${prevPage}`}>
                             <PaginationPrevious className="cursor-pointer" />
                         </Link>
-                    </PaginationItem>
-                    <PaginationItem>
-                        <PaginationLink>
-                            {currentPage} of {totalPage}
-                        </PaginationLink>
                     </PaginationItem>
                     <PaginationItem>
                         <Link href={`/manga-list/${nextPage}`}>

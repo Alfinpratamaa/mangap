@@ -24,6 +24,10 @@ const Navbar = () => {
         {
             label: 'Contact Us',
             path: "/contact",
+        },
+        {
+            label: 'Bookmark',
+            path: "/bookmark"
         }
 
     ];

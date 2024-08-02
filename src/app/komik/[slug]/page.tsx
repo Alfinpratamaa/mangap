@@ -51,6 +51,7 @@ const MangaDetailPage = () => {
                 <section className='bg-transparent'>
                     <div className='md:w-[700px] w-auto max-w-4xl mx-auto -mt-[180px]'>
                         <MangaDetails mangaDetail={mangaDetail} />
+
                     </div>
                 </section>
 

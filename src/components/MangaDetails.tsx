@@ -1,17 +1,43 @@
-'use client';;
 import Image from 'next/image';
 import DetailManga from './DetailManga';
+import { useState, useEffect } from 'react';
 import ReactStars from 'react-stars';
 import { Badge } from './ui/badge';
 
 const MangaDetails = ({ mangaDetail }: { mangaDetail: any }) => {
+    const [bookmarked, setBookmarked] = useState(false);
+
+    useEffect(() => {
+        // Check if this manga is already bookmarked by thumbnail
+        const storedBookmarks = localStorage.getItem('bookmarks');
+        const bookmarks = storedBookmarks ? JSON.parse(storedBookmarks) : [];
+        const exists = bookmarks.some((item: any) => item.thumbnail === mangaDetail.thumbnail);
+        setBookmarked(exists);
+    }, [mangaDetail]);
+
+    const handleBookmark = () => {
+        const storedBookmarks = localStorage.getItem('bookmarks');
+        let bookmarks = storedBookmarks ? JSON.parse(storedBookmarks) : [];
+        const exists = bookmarks.some((item: any) => item.thumbnail === mangaDetail.thumbnail);
+
+        if (exists) {
+            bookmarks = bookmarks.filter((item: any) => item.thumbnail !== mangaDetail.thumbnail);
+            setBookmarked(false);
+        } else {
+            bookmarks.push(mangaDetail);
+            setBookmarked(true);
+        }
+
+        localStorage.setItem('bookmarks', JSON.stringify(bookmarks));
+    };
+
     return (
         <div className="bg-secondary w-full p-3 md:p-4 rounded-xl shadow-xl">
             <h2 className="text-xl md:text-3xl mb-2 text-center font-semibold">{mangaDetail.title}</h2>
             <div className="grid grid-cols-2 md:grid-cols-3 gap-1 md:flex md:justify-center mb-3">
                 {mangaDetail?.genres?.map((genre: any, index: any) => (
                     <Badge key={index} className="text-secondary-foreground p-1 dark:bg-primary-foreground/[0.4]" variant="secondary">
-                        {genre}
+                        {genre.title}
                     </Badge>
                 ))}
             </div>
@@ -50,6 +76,12 @@ const MangaDetails = ({ mangaDetail }: { mangaDetail: any }) => {
                 />
                 <p className="text-primary text-[14px] dark:text-secondary-foreground">{mangaDetail.rating}</p>
             </div>
+            <button
+                className={`w-[100px] mx-auto h-[40px] rounded-md bg-primary-foreground text-white dark:bg-primary-foreground focus:outline-none ${bookmarked ? 'bg-green-500' : 'bg-primary-foreground'}`}
+                onClick={handleBookmark}
+            >
+                {bookmarked ? 'Bookmarked' : 'Bookmark'}
+            </button>
         </div>
     );
 };

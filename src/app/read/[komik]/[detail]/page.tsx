@@ -43,10 +43,13 @@ const ReadChapterPage = () => {
         setLoading(false);
         setChapterData(response.data.data[0]);
         console.log('chapterData:', response.data.data[0]);
-        window.scrollTo({
-          behavior: 'instant',
-          top: 0
-        });
+        // Scroll to the saved position on data fetch
+        const savedScrollPosition = localStorage.getItem(`${komik}-${detail}-scroll`);
+        if (savedScrollPosition) {
+          window.scrollTo(0, parseInt(savedScrollPosition, 10));
+        } else {
+          window.scrollTo(0, 0); // scroll to top if no saved position
+        }
       }
     } catch (error) {
       console.error('Error fetching chapter data:', error);
@@ -59,102 +62,114 @@ const ReadChapterPage = () => {
       console.log('chapterList:', response.data.data);
       setLoading(false);
       setChapterList(response.data.data);
-
     } catch (error) {
       console.error('Error fetching chapter list:', error);
     }
-  }
+  };
+
+  const handleScroll = () => {
+    localStorage.setItem(`${komik}-${detail}-scroll`, window.scrollY.toString());
+  };
+
+  useEffect(() => {
+    window.addEventListener('scroll', handleScroll);
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, [detail, komik]);
 
   if (!chapterData) {
-    return <ReadPageSkeleton />
+    return <ReadPageSkeleton />;
   }
 
   return (
     <>
       {loading && <ReadPageSkeleton />}
-      {!loading && <div className="flex max-w-full w-full flex-col items-center justify-center min-h-screen dark:bg-secondary">
-        <h1 className="text-3xl font-bold mt-5 mb-5 md:px-0 px-1 ">{chapterData?.title}</h1>
-        <div className="m-4 flex mx-5 justify-center space-x-4 md:px-0 ">
-          {chapterData?.prev ? (
-            <Link href={`/read/${komik}${chapterData?.prev}`} className="rounded-lg">
-              <Button className="dark:bg-primary-foreground dark:text-primary dark:hover:bg-primary-foreground/70 text-secondary bg-secondary-foreground text-xs sm:text-sm md:text-base lg:text-lg px-2 sm:px-4 md:px-6 lg:px-8 py-1 sm:py-2 md:py-3 lg:py-4" variant={'default'}>
-                {"<<"} Previous Chapter
-              </Button>
-            </Link>
-          ) : (
-            <span className="invisible">
-              <Button className="text-xs sm:text-sm md:text-base lg:text-lg px-2 sm:px-4 md:px-6 lg:px-8 py-1 sm:py-2 md:py-3 lg:py-4">{"<<"} Previous Chapter</Button>
-            </span>
-          )}
+      {!loading && (
+        <div className="flex max-w-full w-full flex-col items-center justify-center min-h-screen dark:bg-secondary">
+          <h1 className="text-3xl font-bold mt-5 mb-5 md:px-0 px-1 ">{chapterData?.title}</h1>
+          <div className="m-4 flex mx-5 justify-center space-x-4 md:px-0 ">
+            {chapterData?.prev ? (
+              <Link href={`/read/${komik}${chapterData?.prev}`} className="rounded-lg">
+                <Button className="dark:bg-primary-foreground dark:text-primary dark:hover:bg-primary-foreground/70 text-secondary bg-secondary-foreground text-xs sm:text-sm md:text-base lg:text-lg px-2 sm:px-4 md:px-6 lg:px-8 py-1 sm:py-2 md:py-3 lg:py-4" variant={'default'}>
+                  {"<<"} Previous Chapter
+                </Button>
+              </Link>
+            ) : (
+              <span className="invisible">
+                <Button className="text-xs sm:text-sm md:text-base lg:text-lg px-2 sm:px-4 md:px-6 lg:px-8 py-1 sm:py-2 md:py-3 lg:py-4">{"<<"} Previous Chapter</Button>
+              </span>
+            )}
 
-          <div className="flex items-center border-white">
-            <p className="font-bold text-sm sm:text-base md:text-lg lg:text-xl text-center">{nameChapter}</p>
+            <div className="flex items-center border-white">
+              <p className="font-bold text-sm sm:text-base md:text-lg lg:text-xl text-center">{nameChapter}</p>
+            </div>
+
+            {chapterData?.next ? (
+              <Link href={`/read/${komik}${chapterData?.next}`} className="">
+                <Button className="dark:bg-primary-foreground dark:text-primary dark:hover:bg-primary-foreground/70 text-xs sm:text-sm md:text-base lg:text-lg px-2 sm:px-4 md:px-6 lg:px-8 py-1 sm:py-2 md:py-3 lg:py-4" variant={'default'}>
+                  Next Chapter {">>"}
+                </Button>
+              </Link>
+            ) : (
+              <span className="invisible">
+                <Button className="text-xs sm:text-sm md:text-base lg:text-lg px-2 sm:px-4 md:px-6 lg:px-8 py-1 sm:py-2 md:py-3 lg:py-4">Next Chapter {">>"}</Button>
+              </span>
+            )}
           </div>
 
-          {chapterData?.next ? (
-            <Link href={`/read/${komik}${chapterData?.next}`} className="">
-              <Button className="dark:bg-primary-foreground dark:text-primary dark:hover:bg-primary-foreground/70 text-xs sm:text-sm md:text-base lg:text-lg px-2 sm:px-4 md:px-6 lg:px-8 py-1 sm:py-2 md:py-3 lg:py-4" variant={'default'}>
-                Next Chapter {">>"}
-              </Button>
-            </Link>
-          ) : (
-            <span className="invisible">
-              <Button className="text-xs sm:text-sm md:text-base lg:text-lg px-2 sm:px-4 md:px-6 lg:px-8 py-1 sm:py-2 md:py-3 lg:py-4">Next Chapter {">>"}</Button>
-            </span>
-          )}
-        </div>
+          <div className="flex justify-center">
+            <div className="">
+              {chapterData?.panel?.map((imageUrl, index) => {
+                console.log('Image URL:', imageUrl); // Log image URL
+                return (
+                  <div key={index} className="relative">
+                    <Image
+                      src={imageUrl}
+                      alt={"error image"}
+                      layout="responsive"
+                      width={700}
+                      height={1000}
+                      objectFit="contain"
+                      className='w-full'
+                      unoptimized
+                    />
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+          <div className="m-4 flex mx-5 justify-center space-x-4 md:px-0 ">
+            {chapterData?.prev ? (
+              <Link href={`/read/${komik}${chapterData?.prev}`} className="rounded-lg">
+                <Button className="dark:bg-primary-foreground dark:text-primary dark:hover:bg-primary-foreground/70 text-secondary bg-secondary-foreground text-xs sm:text-sm md:text-base lg:text-lg px-2 sm:px-4 md:px-6 lg:px-8 py-1 sm:py-2 md:py-3 lg:py-4" variant={'default'}>
+                  {"<<"} Previous Chapter
+                </Button>
+              </Link>
+            ) : (
+              <span className="invisible">
+                <Button className="text-xs sm:text-sm md:text-base lg:text-lg px-2 sm:px-4 md:px-6 lg:px-8 py-1 sm:py-2 md:py-3 lg:py-4">{"<<"} Previous Chapter</Button>
+              </span>
+            )}
 
-        <div className="flex justify-center">
-          <div className="">
-            {chapterData?.panel?.map((imageUrl, index) => {
-              console.log('Image URL:', imageUrl); // Log image URL
-              return (
-                <div key={index} className="relative">
-                  <Image
-                    src={imageUrl}
-                    alt={"error image"}
-                    layout="responsive"
-                    width={700}
-                    height={1000}
-                    objectFit="contain"
-                    className='w-full'
-                    unoptimized
-                  />
-                </div>
-              );
-            })}
+            <div className="flex items-center border-white">
+              <p className="font-bold text-sm sm:text-base md:text-lg lg:text-xl text-center">{nameChapter}</p>
+            </div>
+
+            {chapterData?.next ? (
+              <Link href={`/read/${komik}${chapterData?.next}`} className="">
+                <Button className="dark:bg-primary-foreground dark:text-primary dark:hover:bg-primary-foreground/70 text-xs sm:text-sm md:text-base lg:text-lg px-2 sm:px-4 md:px-6 lg:px-8 py-1 sm:py-2 md:py-3 lg:py-4" variant={'default'}>
+                  Next Chapter {">>"}
+                </Button>
+              </Link>
+            ) : (
+              <span className="invisible">
+                <Button className="text-xs sm:text-sm md:text-base lg:text-lg px-2 sm:px-4 md:px-6 lg:px-8 py-1 sm:py-2 md:py-3 lg:py-4">Next Chapter {">>"}</Button>
+              </span>
+            )}
           </div>
         </div>
-        <div className="m-4 flex mx-5 justify-center space-x-4 md:px-0 ">
-          {chapterData?.prev ? (
-            <Link href={`/read/${komik}${chapterData?.prev}`} className="rounded-lg">
-              <Button className="dark:bg-primary-foreground dark:text-primary dark:hover:bg-primary-foreground/70 text-secondary bg-secondary-foreground text-xs sm:text-sm md:text-base lg:text-lg px-2 sm:px-4 md:px-6 lg:px-8 py-1 sm:py-2 md:py-3 lg:py-4" variant={'default'}>
-                {"<<"} Previous Chapter
-              </Button>
-            </Link>
-          ) : (
-            <span className="invisible">
-              <Button className="text-xs sm:text-sm md:text-base lg:text-lg px-2 sm:px-4 md:px-6 lg:px-8 py-1 sm:py-2 md:py-3 lg:py-4">{"<<"} Previous Chapter</Button>
-            </span>
-          )}
-
-          <div className="flex items-center border-white">
-            <p className="font-bold text-sm sm:text-base md:text-lg lg:text-xl text-center">{nameChapter}</p>
-          </div>
-
-          {chapterData?.next ? (
-            <Link href={`/read/${komik}${chapterData?.next}`} className="">
-              <Button className="dark:bg-primary-foreground dark:text-primary dark:hover:bg-primary-foreground/70 text-xs sm:text-sm md:text-base lg:text-lg px-2 sm:px-4 md:px-6 lg:px-8 py-1 sm:py-2 md:py-3 lg:py-4" variant={'default'}>
-                Next Chapter {">>"}
-              </Button>
-            </Link>
-          ) : (
-            <span className="invisible">
-              <Button className="text-xs sm:text-sm md:text-base lg:text-lg px-2 sm:px-4 md:px-6 lg:px-8 py-1 sm:py-2 md:py-3 lg:py-4">Next Chapter {">>"}</Button>
-            </span>
-          )}
-        </div>
-      </div>}
+      )}
     </>
   );
 };
