@@ -19,7 +19,7 @@ const MangaDetailPage = () => {
     const fetchMangaDetail = async () => {
         try {
             if (slugParam.slug) {
-                const response = await axios(`${url}/${slugParam.slug}/`);
+                const response = await axios(`${url}/${slugParam.slug}`);
                 const data = response.data.data; // Access the 'data' property
                 setLoading(false);
                 data.href = `/${slugParam.slug}`;
