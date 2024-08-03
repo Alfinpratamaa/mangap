@@ -1,7 +1,15 @@
 {
-  "name": "mangap",
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "url": "https://mangapp.me",
+  "name": "mangapp",
+  "description": "Mangapp adalah tempat terbaik untuk membaca komik manga, manhwa, dan manhua dalam bahasa Indonesia...",
+  "publisher": {
+    "@type": "organization",
+    "name": "mangapp"
+  },
   "version": "0.1.0",
-  "private": true,
+  "private": false,
   "scripts": {
     "dev": "next dev",
     "build": "next build",
