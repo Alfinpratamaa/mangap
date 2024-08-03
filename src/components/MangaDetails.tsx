@@ -3,6 +3,7 @@ import DetailManga from './DetailManga';
 import { useState, useEffect } from 'react';
 import ReactStars from 'react-stars';
 import { Badge } from './ui/badge';
+import { Button } from './ui/button';
 
 const MangaDetails = ({ mangaDetail }: { mangaDetail: any }) => {
     const [bookmarked, setBookmarked] = useState(false);
@@ -76,12 +77,12 @@ const MangaDetails = ({ mangaDetail }: { mangaDetail: any }) => {
                 />
                 <p className="text-primary text-[14px] dark:text-secondary-foreground">{mangaDetail.rating}</p>
             </div>
-            <button
-                className={`w-[100px] mx-auto h-[40px] rounded-md bg-primary-foreground text-white dark:bg-primary-foreground focus:outline-none ${bookmarked ? 'bg-green-500' : 'bg-primary-foreground'}`}
+            <Button
+                className={`mx-auto rounded-md flex bg-orange-600 justify-center hover:bg-orange-900 font-bold ease-in-out duration-500 transition-all  text-white focus:outline-none ${bookmarked ? 'bg-orange-700' : 'bg-orange-600'}`}
                 onClick={handleBookmark}
             >
                 {bookmarked ? 'Bookmarked' : 'Bookmark'}
-            </button>
+            </Button>
         </div>
     );
 };
