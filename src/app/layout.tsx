@@ -14,9 +14,9 @@ export async function generateMetadata(): Promise<Metadata> {
   const keywords = await getKeywords();
 
   return {
-    title: 'Mangapp',
+    title: 'mangapp',
     description: 'Mangapp adalah tempat terbaik untuk membaca komik manga, manhwa, dan manhua dalam bahasa Indonesia. Nikmati koleksi lengkap komik terbaru dan terpopuler seperti Naruto, Jujutsu Kaisen, Solo Leveling, dan banyak lagi. Baca komik online gratis dengan kualitas gambar terbaik dan update terbaru setiap hari. Temukan berbagai genre menarik dari aksi, petualangan, fantasi, hingga romantis hanya di Mangap. Dapatkan pengalaman membaca komik yang mudah dan menyenangkan hanya dengan beberapa klik. Bergabunglah dengan komunitas pembaca komik terbesar di Indonesia dan selalu update dengan komik favorit Anda.',
-    keywords: keywords,
+    keywords: keywords.join(', '),
     openGraph: {
       type: 'website',
       url: 'https://mangapp.me',
@@ -27,7 +27,7 @@ export async function generateMetadata(): Promise<Metadata> {
       alternateLocale: 'id_ID',
     },
     authors: [{
-      name: 'Mangapp',
+      name: 'mangapp',
       url: 'https://mangapp.me'
     }],
     icons: {
