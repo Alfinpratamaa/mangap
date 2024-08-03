@@ -5,7 +5,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     {
       url: "https://mangapp.me",
       lastModified: new Date(),
-      changeFrequency: "hourly",
+      changeFrequency: "always",
       priority: 1,
     },
     {
