@@ -5,7 +5,7 @@ export default function robots(): MetadataRoute.Robots {
     rules: [
       {
         userAgent: "*",
-        allow: ["/"],
+        allow: "/",
       },
     ],
     sitemap: "https://mangapp.me/sitemap.xml",
