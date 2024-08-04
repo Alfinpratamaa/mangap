@@ -1,3 +1,4 @@
+'use client'
 const ErrorPage = () => {
     return (
         <div className="flex flex-col items-center justify-center h-screen dark:bg-primary bg-white text-primary dark:text-white">
