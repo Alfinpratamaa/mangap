@@ -3,7 +3,6 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/Navbar";
 import { ThemeProvider } from "@/components/theme-provider";
-import PopularList from "@/components/PopularList";
 import Footer from "@/components/Footer";
 import Script from "next/script";
 import { getKeywords } from "@/lib/constants";
@@ -69,9 +68,7 @@ export default function RootLayout({
             <main className="flex-1 min-h-screen">
               {children}
             </main>
-            <aside className="hidden lg:block lg:w-1/4 mr-4">
-              <PopularList url={url} />
-            </aside>
+
           </div>
         </ThemeProvider>
         <Footer />

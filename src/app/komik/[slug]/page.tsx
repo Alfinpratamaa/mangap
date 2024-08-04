@@ -45,7 +45,7 @@ const MangaDetailPage = () => {
             {!loading && <div className='w-full max-w-full min-h-screen'>
                 <section className='' style={{ backgroundImage: 'none' }}>
                     <div className='w-auto md:max-w-full max-w-screen-sm h-[300px] max-h-[350px] relative -z-20'>
-                        <Image src={mangaDetail.thumbnail} alt={mangaDetail.title} fill className='object-cover' />
+                        <Image src={mangaDetail.thumbnail.startsWith('http') ? mangaDetail.thumbnail : `/${mangaDetail.thumbnail}`} alt={mangaDetail.title} fill className='object-cover' />
                     </div>
                 </section>
 

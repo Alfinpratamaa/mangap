@@ -77,7 +77,7 @@ export default function AllListPage() {
                                 <div key={manga.href} className="bg-transparent dark:bg-transparent shadow-md rounded-md py-4 mx-2 my-2">
                                     <Link href={`/komik${manga.href}`}>
                                         <div className="relative mx-auto mb-10" style={{ width: '140px', height: '200px' }}>
-                                            <Image fill src={manga.thumbnail} alt={manga.title} className="rounded-md object-cover hover:scale-105 transition-all ease-in-out duration-300" />
+                                            <Image fill src={manga.thumbnail.startsWith('http') ? manga.thumbnail : `/${manga.thumbnail}`} alt={manga.title} className="rounded-md object-cover hover:scale-105 transition-all ease-in-out duration-300" />
                                             <div className="absolute top-2 right-2">
                                                 {getFlagComponent(manga.type)}
                                             </div>

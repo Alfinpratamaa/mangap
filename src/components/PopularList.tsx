@@ -5,10 +5,17 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { useEffect, useState } from 'react';
 import SkeletonPopular from './SkeletonPupular';
+import { usePathname } from 'next/navigation';
 
 const PopularList = ({ url }: { url: string }) => {
     const [manga, setManga] = useState<Popular[]>([])
     const [loading, setLoading] = useState(true)
+
+    const pathName = usePathname();
+
+    if (pathName === `/read`) {
+        return;
+    }
 
     const fetchPopular = async () => {
         try {
