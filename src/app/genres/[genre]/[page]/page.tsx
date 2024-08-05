@@ -51,7 +51,7 @@ const Page = () => {
         if (!page || isNaN(currentPage) || currentPage < 1 || !genre || genre === "") {
             router.push("/genres/comedy/1");
         }
-    }, [fetchData, currentPage])
+    }, [fetchData, currentPage, genre, page, router])
 
     return (
         <>
@@ -61,7 +61,7 @@ const Page = () => {
                 </div>
                 <div>
                     {!isClient && <Skeleton />}
-                    {data?.length > 0 ? (
+                    {isClient && data?.length > 0 ? (
                         <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3">
                             {data?.map((manga: any) => (
                                 <div key={manga.href} className="bg-transparent dark:bg-transparent shadow-md rounded-md py-4 mx-2 my-2">
