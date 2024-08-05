@@ -36,10 +36,6 @@ const Page = () => {
 
     const fetchData = useCallback(async () => {
         try {
-            if (currentPage === 1) {
-                const response = await axios.get(`${url}/${genre}`)
-                setData(response.data.data)
-            }
             const response = await axios.get(`${url}/${genre}/${currentPage}`)
             setData(response.data.data)
             console.log("res genres data : ", response.data)
