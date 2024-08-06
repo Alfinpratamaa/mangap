@@ -1,4 +1,5 @@
 'use client';
+
 import Link from "next/link";
 import { useParams, useRouter } from "next/navigation";
 import { useCallback, useEffect, useState } from "react";
@@ -12,46 +13,44 @@ import { Pagination, PaginationContent, PaginationItem, PaginationLink, Paginati
 import Skeleton from "@/components/Skeleton";
 
 const Page = () => {
-    const { genre, page } = useParams<{ genre: string, page: string }>()
-
+    const { genre, page } = useParams<{ genre: string, page: string }>();
     const router = useRouter();
 
     const [data, setData] = useState([]);
-    const currentPage = page ? parseInt(page, 10) : 1;
     const [isClient, setIsClient] = useState(false);
     const [totalPages, setTotalPages] = useState(0);
-    console.log("genre : ", genre)
-    console.log("currentPage : ", page)
-    const url = `${process.env.NEXT_PUBLIC_API_URL}/genres`
-
-    const getFlagComponent = (chapter: any) => {
-        if (chapter.toLowerCase() === 'manga') {
-            return <Japan />;
-        } else if (chapter.toLowerCase() === 'manhwa') {
-            return <Korea />;
-        } else {
-            return <China />;
-        }
-    };
+    const currentPage = page ? parseInt(page, 10) : 1;
+    const url = `${process.env.NEXT_PUBLIC_API_URL}/genres`;
 
     const fetchData = useCallback(async () => {
         try {
-            const response = await axios.get(`${url}/${genre}/${currentPage}`)
-            setData(response.data.data)
-            console.log("res genres data : ", response.data)
-            setTotalPages(response.data.length_page)
-            setIsClient(true)
+            const response = await axios.get(`${url}/${genre}/${currentPage}`);
+            setData(response.data.data);
+            setTotalPages(response.data.length_page);
+            setIsClient(true);
         } catch (error) {
-            console.error("Error fetching data:", error)
+            console.error("Error fetching data:", error);
         }
-    }, [url, genre, currentPage])
+    }, [url, genre, currentPage]);
 
     useEffect(() => {
-        fetchData()
-        if (!page || isNaN(currentPage) || currentPage < 1 || !genre || genre === "") {
+        if (genre && currentPage >= 1) {
+            fetchData();
+        } else {
             router.push("/genres/comedy/1");
         }
-    }, [fetchData, currentPage, genre, page, router])
+    }, [fetchData, currentPage, genre, router]);
+
+    const getFlagComponent = (type: any) => {
+        switch (type.toLowerCase()) {
+            case 'manga':
+                return <Japan />;
+            case 'manhwa':
+                return <Korea />;
+            default:
+                return <China />;
+        }
+    };
 
     return (
         <>
@@ -61,13 +60,12 @@ const Page = () => {
                 </div>
                 <div>
                     {!isClient && <Skeleton />}
-                    {isClient && data?.length > 0 ? (
+                    {isClient && data.length > 0 && (
                         <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3">
-                            {data?.map((manga: any) => (
+                            {data.map((manga: any) => (
                                 <div key={manga.href} className="bg-transparent dark:bg-transparent shadow-md rounded-md py-4 mx-2 my-2">
                                     <Link href={`/komik${manga.href}`}>
                                         <div className="relative mx-auto mb-10" style={{ width: '140px', height: '200px' }}>
-
                                             <Image
                                                 fill
                                                 src={manga.thumbnail.startsWith('http') ? manga.thumbnail : `/${manga.thumbnail}`}
@@ -99,29 +97,33 @@ const Page = () => {
                                 </div>
                             ))}
                         </div>
-                    ) : null}
+                    )}
                 </div>
             </div>
-            {isClient && (<PaginationSection
-                currentPage={currentPage}
-                totalPage={totalPages}
-                genre={genre}
-            />)}
+            {isClient && (
+                <PaginationSection
+                    currentPage={currentPage}
+                    totalPage={totalPages}
+                    genre={genre}
+                />
+            )}
         </>
-    )
+    );
+};
+
+export default Page;
+
+interface PaginationSectionProps {
+    currentPage: any;
+    totalPage: any;
+    genre: any;
 }
 
-export default Page
-
-function PaginationSection({
+const PaginationSection = ({
     currentPage,
     totalPage,
     genre
-}: {
-    currentPage: number;
-    totalPage: number;
-    genre: string;
-}) {
+}: PaginationSectionProps) => {
     const nextPage = currentPage < totalPage ? currentPage + 1 : currentPage;
     const prevPage = currentPage > 1 ? currentPage - 1 : currentPage;
 
@@ -148,4 +150,4 @@ function PaginationSection({
             </Pagination>
         </div>
     );
-}
+};

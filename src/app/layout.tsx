@@ -59,16 +59,13 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
-
           <div className="">
-
             <Navbar />
           </div>
           <div className="flex flex-col lg:flex-row p-5">
             <main className="flex-1 min-h-screen">
               {children}
             </main>
-
           </div>
         </ThemeProvider>
         <Footer />
