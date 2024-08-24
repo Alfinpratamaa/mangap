@@ -14,16 +14,15 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       changeFrequency: "daily",
       priority: 0.8,
     },
-  ];
 
-  for (let page = 1; page <= 300; page++) {
-    sitemapEntries.push({
-      url: `https://mangapp.me/manga-list/${page}`,
+    {
+      url: "https://mangapp.me/manga-list/",
       lastModified: new Date(),
       changeFrequency: "weekly",
       priority: 0.7,
-    });
-  }
+    },
+  ];
+
 
   return sitemapEntries;
 }
