@@ -8,7 +8,6 @@ const predefinedKeywords: string[] = [
   "komikcast.lol",
   "komikcast.moe",
   "kokikcast.cz",
-  // ... more predefined keywords
 ];
 
 async function fetchComics(page: number): Promise<any[]> {

@@ -5,17 +5,17 @@ import Navbar from "@/components/Navbar";
 import { ThemeProvider } from "@/components/theme-provider";
 import Footer from "@/components/Footer";
 import Script from "next/script";
-import { getKeywords } from "@/lib/constants";
+import { keywords } from "@/lib/constants";
 
 const inter = Inter({ subsets: ["latin"] });
 
 export async function generateMetadata(): Promise<Metadata> {
-  const keywords = await getKeywords();
+
 
   return {
     title: 'mangapp',
     description: 'Mangapp adalah tempat terbaik untuk membaca komik manga, manhwa, dan manhua dalam bahasa Indonesia. Nikmati koleksi lengkap komik terbaru dan terpopuler seperti Naruto, Jujutsu Kaisen, Solo Leveling, dan banyak lagi. Baca komik online gratis dengan kualitas gambar terbaik dan update terbaru setiap hari. Temukan berbagai genre menarik dari aksi, petualangan, fantasi, hingga romantis hanya di Mangap. Dapatkan pengalaman membaca komik yang mudah dan menyenangkan hanya dengan beberapa klik. Bergabunglah dengan komunitas pembaca komik terbesar di Indonesia dan selalu update dengan komik favorit Anda.',
-    keywords: keywords.join(', '),
+    keywords: keywords,
     openGraph: {
       type: 'website',
       url: 'https://mangapp.me',
