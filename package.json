@@ -9,7 +9,10 @@
   "scripts": {
     "dev": "next dev --turbo",
     "build": "next build",
-    "start": "next start"
+    "start": "next start",
+    "pages:build": "npx @cloudflare/next-on-pages",
+    "preview": "npm run pages:build && wrangler pages dev",
+    "deploy": "npm run pages:build && wrangler pages deploy"
   },
   "dependencies": {
     "@radix-ui/react-dropdown-menu": "^2.1.6",
@@ -36,11 +39,13 @@
     "use-debounce": "^10.0.4"
   },
   "devDependencies": {
+    "@cloudflare/next-on-pages": "^1.13.8",
     "@types/node": "^20.17.19",
     "@types/react": "^18.3.18",
     "@types/react-dom": "^18.3.5",
     "@types/react-stars": "^2.2.4",
     "autoprefixer": "^10.4.20",
+    "eslint-plugin-next-on-pages": "^1.13.8",
     "postcss": "^8.5.3",
     "tailwindcss": "^3.4.17",
     "typescript": "^5.7.3"

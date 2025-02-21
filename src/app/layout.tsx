@@ -7,6 +7,8 @@ import Footer from "@/components/Footer";
 import Script from "next/script";
 import { keywords } from "@/lib/constants";
 
+export const runtime = "edge";
+
 const inter = Inter({ subsets: ["latin"] });
 
 export async function generateMetadata(): Promise<Metadata> {
