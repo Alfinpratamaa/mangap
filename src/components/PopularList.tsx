@@ -47,7 +47,7 @@ const PopularList = ({ url }: { url: string }) => {
                     </div>
                     <div className="flow-root">
                         <ul role="list" className="divide-y divide-gray-200 dark:divide-gray-700">
-                            {manga.map((manga, index) => (
+                                {manga?.map((manga, index) => (
                                 <Link href={`/komik${manga.href}`} key={index}>
                                     <li className="py-3 sm:py-4 hover:bg-secondary/5">
                                         <div className="flex items-center gap-2">

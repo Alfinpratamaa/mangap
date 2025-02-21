@@ -1,6 +1,5 @@
 'use client';;
 import { useState, useEffect } from 'react';
-import axios from 'axios';
 import Link from 'next/link';
 import ReactStar from 'react-stars';
 import Image from 'next/image';
@@ -26,9 +25,14 @@ const MangaList = ({ url, mangaByType, seeAll }: MangaListProps) => {
 
     const fetchMangaList = async (): Promise<void> => {
         try {
-            const response = await axios.get(url);
-            setMangaList(response.data.data);
-            console.log('mangaList:', response.data.data);
+            const response = await fetch(url);
+
+            if (!response.ok) {
+                throw new Error('Failed to fetch manga list');
+            }
+            const data = await response.json();
+            setMangaList(data.data);
+            console.log('mangaList:', data.data);
             setLoading(false);
         } catch (error) {
             console.error('Error fetching manga list:', error);
