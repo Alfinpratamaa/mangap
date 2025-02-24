@@ -78,7 +78,7 @@ const MangaDetails = ({ mangaDetail }: { mangaDetail: any }) => {
                 <p className="text-primary text-[14px] dark:text-secondary-foreground">{mangaDetail.rating}</p>
             </div>
             <Button
-                className={`mx-auto rounded-md flex bg-orange-600 justify-center hover:bg-orange-900 font-bold ease-in-out duration-500 transition-all  text-white focus:outline-none ${bookmarked ? 'bg-orange-700' : 'bg-orange-600'}`}
+                className={`mx-auto rounded-md flex bg-gray-800 justify-center hover:bg-gray-700 font-bold ease-in-out duration-500 transition-all  text-white focus:outline-none ${bookmarked ? 'bg-gray-700' : 'bg-gray-800'}`}
                 onClick={handleBookmark}
             >
                 {bookmarked ? 'Bookmarked' : 'Bookmark'}

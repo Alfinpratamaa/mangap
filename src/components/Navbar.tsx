@@ -4,6 +4,7 @@ import { useState } from "react";
 import { FaBars, FaTimes } from "react-icons/fa";
 import { ModeToggle } from "./darkmode";
 import SearchBar from "./SearchBar";
+import { DownloadButton } from "./DownloadButton";
 
 const Navbar = () => {
     const [nav, setNav] = useState(false);
@@ -62,9 +63,9 @@ const Navbar = () => {
                         </li>
                     ))}
                 </ul>
-                <div className="hidden lg:flex md:flex">
+                <div className="hidden lg:flex md:flex items-center gap-2">
+                    <DownloadButton />
                     <ModeToggle />
-
                 </div>
 
                 <div
@@ -76,7 +77,7 @@ const Navbar = () => {
             </div>
 
             {nav && (
-                <ul className="flex flex-col justify-center items-center w-full dark:bg-primary-foreground bg:text-secondary bg-white text-primary ">
+                <ul className="flex flex-col justify-center items-center pb-10 w-full dark:bg-primary-foreground bg:text-secondary bg-white text-primary ">
                     <div>
                         <ModeToggle />
                     </div>
@@ -91,6 +92,7 @@ const Navbar = () => {
 
                         </li>
                     ))}
+                    <DownloadButton />
                 </ul>
             )}
         </nav>
